@@ -1,5 +1,4 @@
-import React, { useState, Suspense } from 'react'
-import './App.scss'
+import React, { useState, Suspense, useTransition } from 'react'
 import Header from './components/Header'
 import LaunchList from './components/LaunchList'
 import LaunchDetail from './components/LaunchDetail'
@@ -10,6 +9,7 @@ const launchResource = getLaunch(1)
 
 const App = () => {
   const [launch, setLaunch] = useState(launchResource)
+  const [startTransition, isPending] = useTransition({ timeoutMs: 3000 })
 
   return (
     <>
@@ -22,7 +22,12 @@ const App = () => {
         <div className="launch-list">
           <Suspense fallback={<Loading />}>
             <LaunchList
-              selectLaunch={(id: number) => setLaunch(getLaunch(id))}
+              isPending={isPending}
+              selectLaunch={(id: number) => {
+                startTransition(() => {
+                  setLaunch(getLaunch(id))
+                })
+              }}
             />
           </Suspense>
         </div>
