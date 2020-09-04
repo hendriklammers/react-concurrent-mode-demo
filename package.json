@@ -12,7 +12,7 @@
     "@types/react-dom": "^16.9.0",
     "bulma": "^0.8.0",
     "node-sass": "^4.13.0",
-    "react": "^0.0.0-experimental-b53ea6ca0",
+    "react": "^0.14.0",
     "react-dom": "^0.0.0-experimental-b53ea6ca0",
     "react-scripts": "3.3.0",
     "typescript": "~3.7.2"
